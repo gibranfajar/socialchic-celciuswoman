@@ -3,22 +3,28 @@ import { useState, useEffect } from "react";
 
 export const ProductGrid = ({ products }) => {
   const [sortedProducts, setSortedProducts] = useState([...products]);
-  const [viewType, setViewType] = useState("tampilan1");
+  const [viewType, setViewType] = useState("tampilan2");
   const [hoveredProduct, setHoveredProduct] = useState(null);
   const [sortOption, setSortOption] = useState("");
   const [sortedProductsByPrice, setSortedProductsByPrice] = useState([]);
 
   // Daftar posisi kolom yang sesuai dengan urutan produk
   const columnPositions = [
-    { colStart: 3, colSpan: 2 },
-    { colStart: 2, colSpan: 2 },
-    { colStart: 4, colSpan: 2 },
-    { colStart: 2, colSpan: 2 },
-    { colStart: 4, colSpan: 2 },
-    { colStart: 3, colSpan: 2 },
-    { colStart: 2, colSpan: 2 },
-    { colStart: 4, colSpan: 2 },
-    { colStart: 3, colSpan: 2 },
+    { colStart: 1, colSpan: 6 }, // baris pertama, 2 foto
+    { colStart: 7, colSpan: 6 },
+    { colStart: 1, colSpan: 4 }, // baris kedua, 3 foto
+    { colStart: 5, colSpan: 4 },
+    { colStart: 9, colSpan: 4 },
+    { colStart: 1, colSpan: 6 }, // baris ketiga, 2 foto
+    { colStart: 7, colSpan: 6 },
+    { colStart: 1, colSpan: 4 }, // baris keempat, 3 foto
+    { colStart: 5, colSpan: 4 },
+    { colStart: 9, colSpan: 4 },
+    { colStart: 1, colSpan: 4 }, // baris kelima, 3 foto
+    { colStart: 5, colSpan: 4 },
+    { colStart: 9, colSpan: 4 },
+    { colStart: 1, colSpan: 6 }, // baris keenam, 2 foto
+    { colStart: 7, colSpan: 6 },
   ];
 
   // Fungsi untuk mengatur posisi kolom sesuai dengan urutan produk
@@ -60,7 +66,7 @@ export const ProductGrid = ({ products }) => {
   }
 
   return (
-    <div className="bg-base-100">
+    <div className="bg-base-100 text-mono">
       <div className="w-full flex justify-end sticky top-0 bg-white">
         <ul className="mx-4 flex">
           <details className="dropdown dropdown-end">
@@ -70,7 +76,7 @@ export const ProductGrid = ({ products }) => {
             >
               Sort by
             </summary>
-            <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 w-44">
+            <ul className="p-2 text-xs shadow menu dropdown-content z-[1] bg-base-100 w-44">
               <li onClick={() => handleSortChange("Price Low to High")}>
                 <a>Price Low to High</a>
               </li>
@@ -82,7 +88,7 @@ export const ProductGrid = ({ products }) => {
 
           <li
             className="text-xs mx-4 my-3 btn-filter tampilan1 hidden md:block"
-            onClick={() => handleViewChange("tampilan1")}
+            onClick={() => handleViewChange("tampilan2")}
           >
             <svg
               width="15"
@@ -97,7 +103,7 @@ export const ProductGrid = ({ products }) => {
           </li>
           <li
             className="text-xs mx-4 my-3 btn-filter tampilan2 hidden md:block"
-            onClick={() => handleViewChange("tampilan2")}
+            onClick={() => handleViewChange("tampilan1")}
           >
             <svg
               width="15"
@@ -119,7 +125,7 @@ export const ProductGrid = ({ products }) => {
             {displayedProducts.map((product) => (
               <div
                 key={product.id}
-                className="mb-10"
+                className="mb-5"
                 onMouseEnter={() => setHoveredProduct(product.id)}
                 onMouseLeave={() => setHoveredProduct(null)}
               >
@@ -135,7 +141,7 @@ export const ProductGrid = ({ products }) => {
                     }
                     loading="eager"
                   />
-                  <div className="text-sm">
+                  <div className="text-xs text-mono">
                     <p>{product.product_name}</p>
                     {product.price_disc !== 0 ? (
                       <>
@@ -157,11 +163,11 @@ export const ProductGrid = ({ products }) => {
 
       {/* Tampilan 2 */}
       {viewType === "tampilan2" && (
-        <div className="grid-template grid grid-cols-6 gap-1">
+        <div className="grid-template grid grid-cols-12 gap-2">
           {displayedProducts.map((product, index) => (
             <div
               key={product.id}
-              className={`mb-10`}
+              className={`mb-5`}
               style={{
                 gridColumn: `${getProductPosition(index).colStart} / span ${
                   getProductPosition(index).colSpan
@@ -183,7 +189,7 @@ export const ProductGrid = ({ products }) => {
                       : import.meta.env.VITE_IMG_STORAGE + product.image1
                   }
                 />
-                <div className="text-sm">
+                <div className="text-xs text-mono">
                   <p>{product.product_name}</p>
                   {product.price_disc !== 0 ? (
                     <>
