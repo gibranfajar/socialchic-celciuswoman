@@ -67,55 +67,36 @@ export const ProductGrid = ({ products }) => {
 
   return (
     <div className="bg-base-100 text-mono">
-      <div className="w-full flex justify-end sticky top-0 bg-white">
-        <ul className="mx-4 flex">
-          <details className="dropdown dropdown-end">
-            <summary
-              className="m-1 btn btn-sm btn-ghost text-xs hover:bg-transparent"
-              aria-label="Sort by"
-            >
-              Sort by
-            </summary>
-            <ul className="p-2 text-xs shadow menu dropdown-content z-[1] bg-base-100 w-44">
-              <li onClick={() => handleSortChange("Price Low to High")}>
-                <a>Price Low to High</a>
-              </li>
-              <li onClick={() => handleSortChange("Price High to Low")}>
-                <a>Price High to Low</a>
-              </li>
-            </ul>
-          </details>
-
-          <li
-            className="text-xs mx-4 my-3 btn-filter tampilan1 hidden md:block"
-            onClick={() => handleViewChange("tampilan2")}
+      <div className="w-full flex justify-between sticky top-0 bg-white">
+        <div className="flex">
+          <summary
+            className="m-1 btn btn-sm btn-ghost text-xs hover:bg-transparent"
+            aria-label="Sort by"
+            onClick={() =>
+              handleViewChange(
+                viewType === "tampilan1" ? "tampilan2" : "tampilan1"
+              )
+            }
           >
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 25 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect x="0.5" y="0.5" width="10" height="24" stroke="black" />
-              <rect x="14.5" y="0.5" width="10" height="24" stroke="black" />
-            </svg>
-          </li>
-          <li
-            className="text-xs mx-4 my-3 btn-filter tampilan2 hidden md:block"
-            onClick={() => handleViewChange("tampilan1")}
+            Switch View
+          </summary>
+        </div>
+        <details className="dropdown dropdown-end">
+          <summary
+            className="m-1 btn btn-sm btn-ghost text-xs hover:bg-transparent"
+            aria-label="Sort by"
           >
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 25 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect x="0.5" y="0.5" width="24" height="24" stroke="black" />
-            </svg>
-          </li>
-        </ul>
+            Sort by
+          </summary>
+          <ul className="p-2 text-xs shadow menu dropdown-content z-[1] bg-base-100 w-44">
+            <li onClick={() => handleSortChange("Price Low to High")}>
+              <a>Price Low to High</a>
+            </li>
+            <li onClick={() => handleSortChange("Price High to Low")}>
+              <a>Price High to Low</a>
+            </li>
+          </ul>
+        </details>
       </div>
 
       {/* Tampilan 1 */}
@@ -194,12 +175,12 @@ export const ProductGrid = ({ products }) => {
                   {product.price_disc !== 0 ? (
                     <>
                       <span className="opacity-30 line-through pr-2">
-                        IDR {product.price}
+                        IDR {formatRupiah(product.price)}
                       </span>
-                      <span>IDR {product.price_disc}</span>
+                      <span>IDR {formatRupiah(product.price_disc)}</span>
                     </>
                   ) : (
-                    <span>IDR {product.price}</span>
+                    <span>IDR {formatRupiah(product.price)}</span>
                   )}
                 </div>
               </Link>
