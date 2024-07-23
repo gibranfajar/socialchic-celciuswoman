@@ -7,8 +7,9 @@ export const ProductGrid = ({ products }) => {
   const [hoveredProduct, setHoveredProduct] = useState(null);
   const [sortOption, setSortOption] = useState("");
   const [sortedProductsByPrice, setSortedProductsByPrice] = useState([]);
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([...products]);
 
-  // Daftar posisi kolom yang sesuai dengan urutan produk
   const columnPositions = [
     { colStart: 1, colSpan: 6 }, // baris pertama, 2 foto
     { colStart: 7, colSpan: 6 },
@@ -27,14 +28,12 @@ export const ProductGrid = ({ products }) => {
     { colStart: 7, colSpan: 6 },
   ];
 
-  // Fungsi untuk mengatur posisi kolom sesuai dengan urutan produk
   const getProductPosition = (index) => {
     const numPositions = columnPositions.length;
     const positionIndex = index % numPositions;
     return columnPositions[positionIndex];
   };
 
-  // Fungsi untuk mengubah tampilan ketika tombol diklik
   const handleViewChange = (view) => {
     setViewType(view);
   };
@@ -44,7 +43,13 @@ export const ProductGrid = ({ products }) => {
     setSortedProducts(sortedProducts);
   }, [products]);
 
-  // Fungsi sortir harga produk
+  useEffect(() => {
+    const filtered = sortedProducts.filter((product) =>
+      product.product_name.toLowerCase().includes(searchKeyword.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [searchKeyword, sortedProducts]);
+
   const handleSortChange = (option) => {
     setSortOption(option);
     let sortedProductsCopy = [...sortedProducts];
@@ -58,8 +63,9 @@ export const ProductGrid = ({ products }) => {
     setSortedProductsByPrice(sortedProductsCopy);
   };
 
-  // Gunakan sortedProductsByPrice jika ada sortir dipilih, jika tidak, gunakan sortedProducts
-  const displayedProducts = sortOption ? sortedProductsByPrice : sortedProducts;
+  const displayedProducts = sortOption
+    ? sortedProductsByPrice
+    : filteredProducts;
 
   function formatRupiah(number) {
     return number.toLocaleString("id-ID");
@@ -81,22 +87,73 @@ export const ProductGrid = ({ products }) => {
             Switch View
           </summary>
         </div>
-        <details className="dropdown dropdown-end">
-          <summary
-            className="m-1 btn btn-sm btn-ghost text-xs hover:bg-transparent"
-            aria-label="Sort by"
+        <div className="flex items-center gap-2">
+          <form
+            action=""
+            className="flex gap-2 items-center border-b border-black relative"
+            onSubmit={(e) => e.preventDefault()}
           >
-            Sort by
-          </summary>
-          <ul className="p-2 text-xs shadow menu dropdown-content z-[1] bg-base-100 w-44">
-            <li onClick={() => handleSortChange("Price Low to High")}>
-              <a>Price Low to High</a>
-            </li>
-            <li onClick={() => handleSortChange("Price High to Low")}>
-              <a>Price High to Low</a>
-            </li>
-          </ul>
-        </details>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="h-6 w-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search"
+              className="focus:outline-none flex-grow"
+              value={searchKeyword}
+              onChange={(e) => setSearchKeyword(e.target.value)}
+            />
+            {searchKeyword && (
+              <button
+                type="button"
+                className="absolute right-0 p-1"
+                onClick={() => setSearchKeyword("")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            )}
+          </form>
+          <details className="dropdown dropdown-end">
+            <summary
+              className="m-1 btn btn-sm btn-ghost text-xs hover:bg-transparent"
+              aria-label="Sort by"
+            >
+              Sort by
+            </summary>
+            <ul className="p-2 text-xs shadow menu dropdown-content z-[1] bg-base-100 w-44">
+              <li onClick={() => handleSortChange("Price Low to High")}>
+                <a>Price Low to High</a>
+              </li>
+              <li onClick={() => handleSortChange("Price High to Low")}>
+                <a>Price High to Low</a>
+              </li>
+            </ul>
+          </details>
+        </div>
       </div>
 
       {/* Tampilan 1 */}
