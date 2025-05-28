@@ -2,38 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Squal Sans";
+  src: url("./fonts/Sequel Sans Light Body.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Squal Sans Semi Bold";
+  src: url("./fonts/Sequel\ Sans\ Semi\ Bold\ Head.ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+.squels-title {
+  font-family: "Squal Sans Semi Bold", sans-serif;
+  /* font-weight: 550; */
+  font-style: normal;
+}
+
 .text-mono {
-  font-family: "DM Mono", monospace;
+  font-family: "Squal Sans", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
 .dm-mono-regular {
-  font-family: "DM Mono", monospace;
+  font-family: "Squal Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 .dm-mono-medium {
-  font-family: "DM Mono", monospace;
+  font-family: "Squal Sans", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
 .dm-mono-light-italic {
-  font-family: "DM Mono", monospace;
+  font-family: "Squal Sans", sans-serif;
   font-weight: 300;
   font-style: italic;
 }
 
 .dm-mono-regular-italic {
-  font-family: "DM Mono", monospace;
+  font-family: "Squal Sans", sans-serif;
   font-weight: 400;
   font-style: italic;
 }
 
 .dm-mono-medium-italic {
-  font-family: "DM Mono", monospace;
+  font-family: "Squal Sans", sans-serif;
   font-weight: 500;
   font-style: italic;
 }
@@ -43,6 +63,6 @@
   position: absolute;
 }
 
-.select-label input[type="radio"]:checked+span {
+.select-label input[type="radio"]:checked + span {
   border-bottom: 2px solid black;
 }

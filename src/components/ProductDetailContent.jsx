@@ -18,16 +18,18 @@ export const ProductDetailContent = ({
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-2">{productDetail.product_name}</h1>
+      <h1 className="text-2xl font-bold mb-2 squels-title">
+        {productDetail.product_name}
+      </h1>
       <p className="text-xl mb-4 text-mono">
         IDR {productDetail.price ? formatPrice(productDetail.price) : ""}
       </p>
       <div className="mb-4 flex justify-between">
-        <span className="font-semibold text-lg">Color</span>
+        <span className="font-semibold text-lg squels-title">Color</span>
         <div className="flex gap-2">
           {dataColor.map((color) => (
             <label key={color.id} className="mx-2 select-label">
-              <Link to={`/product/${color.product_slug}/${color.article_name}`}>
+              <Link to={`/product/${color.product_slug}/${color.sku}`}>
                 <input
                   type="radio"
                   name="color"
@@ -36,9 +38,9 @@ export const ProductDetailContent = ({
                   onChange={() => handleColorChange(color.color)}
                 />
                 <span
-                  className={
+                  className={`text-mono ${
                     selectedColor === color.color ? "active-color" : ""
-                  }
+                  }`}
                 >
                   {color.color}
                 </span>
@@ -48,7 +50,7 @@ export const ProductDetailContent = ({
         </div>
       </div>
       <div className="mb-4 flex justify-between">
-        <span className="font-semibold text-lg">Size</span>
+        <span className="font-semibold text-lg squels-title">Size</span>
         <div className="flex gap-2">
           {dataSizes.map((size, index) => (
             <span key={index} className="inline-block mr-2">
@@ -58,14 +60,14 @@ export const ProductDetailContent = ({
         </div>
       </div>
       <div className="mb-4">
-        <span className="font-semibold text-lg">Description</span>
+        <span className="font-semibold text-lg squels-title">Description</span>
         <p
           className="ms-4 text-mono"
           dangerouslySetInnerHTML={{ __html: productDetail.article_desc }}
         ></p>
       </div>
       <div className="mb-4">
-        <span className="font-semibold text-lg">Size Chart</span>
+        <span className="font-semibold text-lg squels-title">Size Chart</span>
         <p
           className="ms-4 text-mono"
           dangerouslySetInnerHTML={{ __html: productDetail.size_chart }}

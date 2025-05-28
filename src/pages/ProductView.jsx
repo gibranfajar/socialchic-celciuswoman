@@ -10,20 +10,18 @@ export const ProductView = () => {
   const [productDetail, setProductDetail] = useState([]);
   const [dataSizes, setDataSizes] = useState([]);
   const [dataImages, setDataImages] = useState([]);
-  const [dataColor, setDataColor] = useState([]); // This is not needed for this component, it's only used in ProductViewDetail component.
-  const [relateProduct, setRelateProduct] = useState([]);
+  const [dataColor, setDataColor] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        `https://cms-catalog.clcs.co.id/api/products-detail/${productSlug}/${productSku}`
+        `https://admin-socialchic.clcs.co.id/api/products-detail/${productSlug}/${productSku}`
       )
       .then((res) => {
         setProductDetail(res.data.productDetail);
         setDataSizes(res.data.data_sizes);
         setDataImages(res.data.data_images);
         setDataColor(res.data.data_article);
-        setRelateProduct(res.data.productRelated);
       })
       .catch((error) => {
         console.error("Error fetching product detail:", error);
@@ -32,8 +30,8 @@ export const ProductView = () => {
 
   return (
     <Layouts>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-5">
-        <div className="col-span-1 text-sm order-last md:order-first">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-5 pt-12">
+        <div className="col-span-1 text-sm min-h-[65vh] md:h-auto">
           <ProductDetailImage dataImages={dataImages} />
         </div>
         <div className="col-span-1 text-sm">
