@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layouts } from "../layouts/Layouts";
-import desktop from "../assets/img/banner.jpg";
+import desktop from "../assets/img/desktop.jpg";
 import mobile from "../assets/img/main-mobile.jpg";
 import textDesktop from "../assets/img/text-desktop.png";
 import textMobile from "../assets/img/text-mobile.png";
@@ -71,7 +71,7 @@ export const Home = () => {
         <motion.img
           src={textDesktop}
           alt="Social Chic Desktop Text"
-          className="hidden md:hidden w-full absolute bottom-16 px-32"
+          className="hidden md:block w-full absolute bottom-20 px-36"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 3 }}
@@ -91,7 +91,7 @@ export const Home = () => {
         <motion.img
           src={button}
           alt="Social Chic Button"
-          className="w-44 md:hidden absolute bottom-10 md:bottom-6 px-12 cursor-pointer left-0 right-0 mx-auto"
+          className="w-44 md:w-52 absolute bottom-10 md:bottom-10 px-12 cursor-pointer left-0 right-0 mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 3 }}
