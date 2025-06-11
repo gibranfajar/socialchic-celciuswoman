@@ -22,7 +22,17 @@ export const ProductDetailContent = ({
         {productDetail.product_name}
       </h1>
       <p className="text-xl mb-4 text-mono">
-        IDR {productDetail.price ? formatPrice(productDetail.price) : ""}
+        {productDetail.price_disc !== 0 ? (
+          <>
+            <span className="opacity-30 line-through pr-2">
+              IDR {formatPrice(productDetail.price)}
+            </span>
+            <span>IDR {formatPrice(productDetail.price_disc)}</span>
+          </>
+        ) : (
+          <span>IDR {formatPrice(productDetail.price)}</span>
+        )}
+        {/* IDR {productDetail.price ? formatPrice(productDetail.price) : ""} */}
       </p>
       <div className="mb-4 flex justify-between">
         <span className="font-semibold text-lg squels-title">Color</span>
