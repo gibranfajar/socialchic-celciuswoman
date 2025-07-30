@@ -28,6 +28,24 @@ export const ProductView = () => {
       });
   }, [productSku, productSlug]);
 
+  // fetch Counter product view
+  useEffect(() => {
+    const hitCounter = async () => {
+      try {
+        await axios.post(
+          `https://admin-socialchic.clcs.co.id/api/counter-products`,
+          {
+            product_id: productDetail.id,
+          }
+        );
+      } catch (error) {
+        console.error("Error fetching counter:", error);
+      }
+    };
+
+    hitCounter();
+  }, [productDetail.id]);
+
   return (
     <Layouts>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-5 pt-12">
