@@ -1,18 +1,33 @@
 import { useEffect, useState } from "react";
 import { Layouts } from "../layouts/Layouts";
 import desktop1 from "../assets/img/desktop-1.jpg";
-import desktop2 from "../assets/img/desktop-2.jpg";
-import desktop3 from "../assets/img/desktop-3.jpg";
 import mobile1 from "../assets/img/mobile-1.jpg";
-import mobile2 from "../assets/img/mobile-2.png";
-import mobile3 from "../assets/img/mobile-3.jpg";
 import text1 from "../assets/img/text-mobile-1.png";
-import text2 from "../assets/img/text-mobile-2.png";
 import button from "../assets/img/button.png";
 import { motion } from "framer-motion";
 import { Link, Element } from "react-scroll";
 import { ProductGrid } from "../components/ProductGrid";
 import axios from "axios";
+
+// image desktop 3
+import desktop3bg from "../assets/img/desktop3/bg.png";
+import desktop3texttopleft from "../assets/img/desktop3/top-left.png";
+import desktop3bottomtext from "../assets/img/desktop3/bottom-text.png";
+import desktop3logo from "../assets/img/desktop3/bottom-right-logo.png";
+import desktop3text from "../assets/img/desktop3/text.png";
+import desktop3jastiper from "../assets/img/desktop3/jastiper.png";
+import desktop3date from "../assets/img/desktop3/date.png";
+import desktop3button from "../assets/img/desktop3/button.png";
+
+// image mobile 3
+import mobile3bg from "../assets/img/mobile3/bg.png";
+import mobile3texttopleft from "../assets/img/mobile3/top-left.png";
+import mobile3bottomtext from "../assets/img/mobile3/bottom-text.png";
+import mobile3logo from "../assets/img/mobile3/bottom-right.png";
+import mobile3text from "../assets/img/mobile3/text.png";
+import mobile3jastiper from "../assets/img/mobile3/jastiper.png";
+import mobile3date from "../assets/img/mobile3/date.png";
+import mobile3button from "../assets/img/mobile3/button.png";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -109,25 +124,79 @@ export const Home = () => {
               style={{ width: "100%", height: "100%" }}
             >
               <SwiperSlide>
-                <motion.img
-                  src={desktop3}
-                  alt="Social Chic Desktop Banner 1"
-                  className="w-full h-screen object-cover object-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 3 }}
-                />
+                <div className="w-full h-screen relative">
+                  <motion.img
+                    src={desktop3bg}
+                    alt="Social Chic Desktop Banner 1"
+                    className="w-full h-screen object-cover object-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 3 }}
+                  />
+                  <motion.img
+                    src={desktop3texttopleft}
+                    alt="Social Chic Desktop Banner 1 Text"
+                    className="absolute left-0 w-52 p-10 top-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 3 }}
+                  />
+
+                  <motion.img
+                    src={desktop3jastiper}
+                    alt="Social Chic Desktop Banner 1 Text"
+                    className="absolute right-64 w-[250px] p-10 top-36 bottom-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 3 }}
+                  />
+
+                  <motion.img
+                    src={desktop3text}
+                    alt="Social Chic Desktop Banner 1 Text"
+                    className="absolute right-20 w-[430px] p-10 top-44 bottom-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 3 }}
+                  />
+
+                  <motion.img
+                    src={desktop3date}
+                    alt="Social Chic Desktop Banner 1 Text"
+                    className="absolute right-64 w-[250px] p-10 top-64 bottom-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 3 }}
+                  />
+
+                  <motion.img
+                    src={desktop3button}
+                    alt="Social Chic Desktop Banner 1 Text"
+                    className="absolute right-[310px] w-[200px] p-10 top-[300px] bottom-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 3 }}
+                  />
+
+                  <motion.img
+                    src={desktop3bottomtext}
+                    alt="Social Chic Desktop Banner 1 Text"
+                    className="absolute left-0 w-96 p-10 bottom-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 3 }}
+                  />
+                  <motion.img
+                    src={desktop3logo}
+                    alt="Social Chic Desktop Banner 1 Text"
+                    className="absolute right-10 w-40 p-10 bottom-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 3 }}
+                  />
+                </div>
               </SwiperSlide>
-              <SwiperSlide>
-                <motion.img
-                  src={desktop2}
-                  alt="Social Chic Desktop Banner 2"
-                  className="w-full h-screen object-cover object-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 3 }}
-                />
-              </SwiperSlide>
+
               <SwiperSlide>
                 <motion.img
                   src={desktop1}
@@ -153,34 +222,71 @@ export const Home = () => {
             >
               <SwiperSlide>
                 <motion.img
-                  src={mobile3}
+                  src={mobile3bg}
                   alt="Social Chic Mobile Banner"
                   className="w-full h-[calc(var(--vh,1vh)*100)] object-cover object-center"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 3 }}
                 />
+                <motion.img
+                  src={mobile3texttopleft}
+                  alt="Social Chic Mobile Banner Text"
+                  className="absolute left-0 w-40 p-8 top-14"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 3 }}
+                />
+                <motion.img
+                  src={mobile3jastiper}
+                  alt="Social Chic Mobile Banner Text"
+                  className="absolute left-0 w-60 p-8 top-32"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 3 }}
+                />
+                <motion.img
+                  src={mobile3text}
+                  alt="Social Chic Mobile Banner Text"
+                  className="absolute left-0 w-auto p-8 top-40"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 3 }}
+                />
+                <motion.img
+                  src={mobile3date}
+                  alt="Social Chic Mobile Banner Text"
+                  className="absolute left-0 w-60 p-8 top-64"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 3 }}
+                />
+                <motion.img
+                  src={mobile3button}
+                  alt="Social Chic Mobile Banner Text"
+                  className="absolute left-0 w-44 px-8 py-4 top-80"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 3 }}
+                />
+                <motion.img
+                  src={mobile3bottomtext}
+                  alt="Social Chic Mobile Banner Text"
+                  className="absolute left-0 w-64 p-8 bottom-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 3 }}
+                />
+                <motion.img
+                  src={mobile3logo}
+                  alt="Social Chic Mobile Banner Text"
+                  className="absolute right-0 w-32 p-8 bottom-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 3 }}
+                />
               </SwiperSlide>
-              <SwiperSlide>
-                <div className="relative w-full h-[calc(var(--vh,1vh)*100)]">
-                  <motion.img
-                    src={mobile2}
-                    alt="Social Chic Mobile Banner"
-                    className="w-full h-full object-cover object-center"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 3 }}
-                  />
-                  <motion.img
-                    src={text2}
-                    alt="Social Chic Mobile Banner Text"
-                    className="absolute left-0 w-full p-8 top-36"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 3 }}
-                  />
-                </div>
-              </SwiperSlide>
+
               <SwiperSlide>
                 <div className="relative w-full h-[calc(var(--vh,1vh)*100)]">
                   <motion.img
@@ -212,8 +318,6 @@ export const Home = () => {
             </Swiper>
           </div>
         </Link>
-
-        {/* ...existing code for text and button... */}
       </section>
 
       <Element name="section2" className="w-full min-h-screen">
